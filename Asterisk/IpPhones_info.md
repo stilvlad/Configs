@@ -4,6 +4,7 @@
 Для того чтобы увидеть модели всех зарегистрированных SIP-устройств на сервере Asterisk, можно использовать следующую команду:
 
 for a in `asterisk -rx "sip show peers" | grep "OK" | cut -f1 -d/` ; do asterisk -rx "sip show peer $a"; done | grep Useragent
+
 Разбор команды:
 • asterisk -rx "sip show peers" — эта команда выводит информацию о всех зарегистрированных SIP-устройствах.
 • grep "OK" — фильтрует вывод, оставляя только те устройства, которые успешно зарегистрированы.
@@ -15,6 +16,7 @@ for a in `asterisk -rx "sip show peers" | grep "OK" | cut -f1 -d/` ; do asterisk
 Чтобы получить информацию о зарегистрированных SIP-экстенах и их IP-адресах, можно использовать следующую команду:
 
 for a in `asterisk -rx "sip show peers" | grep "OK" | cut -f1 -d/` ; do asterisk -rx "sip show peer $a"; done | grep Contact
+
 Разбор команды:
 • Вся структура команды аналогична первой, но вместо фильтрации по Useragent используется фильтрация по Contact, которая выводит информацию о текущем IP-адресе устройства.
 • Результат команды будет содержать список всех зарегистрированных SIP-устройств с их IP-адресами.
@@ -24,6 +26,7 @@ for a in `asterisk -rx "sip show peers" | grep "OK" | cut -f1 -d/` ; do asterisk
 for a in `asterisk -rx "sip show peers" | grep "OK" | cut -f1 -d/` ; do 
     asterisk -rx "sip show peer $a" | grep -E "Useragent|Contact"
 done | grep "Yealink"
+
 Разбор команды:
 • В первой части команды мы получаем список всех зарегистрированных SIP-устройств.
 • Для каждого устройства выполняется запрос его подробной информации (включая параметры Useragent и Contact).
